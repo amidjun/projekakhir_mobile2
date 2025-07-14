@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:projekakhir/map_screen.dart';
 import 'user_info.dart';
 import 'musik.dart';
 import 'youtube_video.dart';
@@ -43,7 +44,9 @@ class HomePage extends StatelessWidget {
             mainAxisSpacing: 12,
             crossAxisSpacing: 12,
             children: [
-              _buildMenuItem(context, icon: Icons.list, label: 'CRUD', onTap: () {}),
+              _buildMenuItem(context, icon: Icons.list, label: 'CRUD', onTap: () {
+              //   CRUD MENU
+              }),
               _buildMenuItem(context, icon: Icons.image, label: 'Galeri Gambar', onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) => GalleryImagePage()));
               }),
@@ -63,7 +66,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (_) => CameraVideoPage()));
               }),
               _buildMenuItem(context, icon: Icons.map, label: 'Maps', onTap: () {
-                // Tambahkan navigasi maps
+                Navigator.push(context, MaterialPageRoute(builder: (_) => MapScreen()));
               }),
               _buildMenuItem(context, icon: Icons.account_circle, label: 'User Info', onTap: () {
                 Navigator.push(context, MaterialPageRoute(

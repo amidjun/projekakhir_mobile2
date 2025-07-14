@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'local_notification_service.dart';
 import 'sign_in.dart'; // halaman login
+import 'home_page.dart';
 
 
 // Handler ketika app dalam background/terminated
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       title: 'Login with Google + FCM',
       debugShowCheckedModeBanner: false,
       // Langsung arahkan ke halaman SignIn
-      home: SignInScreen(), // <--- tampilan login kamu
+      home: HomePage(), // <--- tampilan login kamu
     );
   }
 }
