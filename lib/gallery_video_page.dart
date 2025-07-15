@@ -4,6 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
 class GalleryVideoPage extends StatefulWidget {
+  const GalleryVideoPage({super.key});
+
   @override
   _GalleryVideoPageState createState() => _GalleryVideoPageState();
 }

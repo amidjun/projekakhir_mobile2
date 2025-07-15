@@ -8,7 +8,8 @@ class EditWishlistScreen extends StatefulWidget {
   final String? harga;
   final String? tujuan;
 
-  EditWishlistScreen({
+  const EditWishlistScreen({
+    super.key,
     required this.kodeBarang,
     this.barang,
     this.harga,

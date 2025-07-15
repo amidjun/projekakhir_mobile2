@@ -5,6 +5,8 @@ import "package:latlong2/latlong.dart";
 class MapScreen extends StatelessWidget {
   LatLng position = LatLng(-6.8750277, 109.6622693);
 
+  MapScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

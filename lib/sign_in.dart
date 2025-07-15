@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'home_page.dart'; // Pastikan file ini ada dan sudah dibuat
 
 class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
+
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
@@ -20,7 +22,7 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 width: 150,
                 height: 150,
                 child: Image.asset("assets/projekakhir.png"),
@@ -36,14 +38,16 @@ class _SignInScreenState extends State<SignInScreen> {
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: _isSigningIn
                           ? CircularProgressIndicator(
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.white),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white,
+                              ),
                             )
                           : OutlinedButton(
                               style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                shape: MaterialStateProperty.all(
+                                backgroundColor: WidgetStateProperty.all(
+                                  Colors.white,
+                                ),
+                                shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(40),
                                   ),
@@ -56,7 +60,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
                                 User user =
                                     await Authentication.signInWithGoogle(
-                                        context: context);
+                                      context: context,
+                                    );
 
                                 setState(() {
                                   _isSigningIn = false;
@@ -70,15 +75,18 @@ class _SignInScreenState extends State<SignInScreen> {
                                 );
                               },
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                padding: const EdgeInsets.fromLTRB(
+                                  0,
+                                  10,
+                                  0,
+                                  10,
+                                ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image(
-                                      image:
-                                          AssetImage("google_logo.png"),
+                                      image: AssetImage("google_logo.png"),
                                       height: 35.0,
                                     ),
                                     Padding(
@@ -91,7 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -99,9 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     );
                   }
                   return CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      Colors.orange,
-                    ),
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
                   );
                 },
               ),

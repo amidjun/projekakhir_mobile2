@@ -3,23 +3,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'user_info.dart';
 import 'home_page.dart';
 
 class Authentication {
-  static Future<FirebaseApp> initializeFirebase({
-    BuildContext? context,
-  }) async {
+  static Future<FirebaseApp> initializeFirebase({BuildContext? context}) async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
 
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      Navigator.of(context!).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => HomePage(),
-        ),
-      );
+      Navigator.of(
+        context!,
+      ).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
     }
 
     return firebaseApp;
@@ -33,8 +28,9 @@ class Authentication {
       GoogleAuthProvider authProvider = GoogleAuthProvider();
 
       try {
-        final UserCredential userCredential =
-            await auth.signInWithPopup(authProvider);
+        final UserCredential userCredential = await auth.signInWithPopup(
+          authProvider,
+        );
 
         user = userCredential.user!;
       } catch (e) {
@@ -43,8 +39,8 @@ class Authentication {
     } else {
       final GoogleSignIn googleSignIn = GoogleSignIn();
 
-      final GoogleSignInAccount? googleSignInAccount =
-          await googleSignIn.signIn();
+      final GoogleSignInAccount? googleSignInAccount = await googleSignIn
+          .signIn();
 
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
@@ -56,8 +52,9 @@ class Authentication {
         );
 
         try {
-          final UserCredential userCredential =
-              await auth.signInWithCredential(credential);
+          final UserCredential userCredential = await auth.signInWithCredential(
+            credential,
+          );
 
           user = userCredential.user!;
         } on FirebaseAuthException catch (e) {
@@ -81,9 +78,7 @@ class Authentication {
         } catch (e) {
           ScaffoldMessenger.of(context!).showSnackBar(
             SnackBar(
-              content: Text(
-                'Error occurred using Google Sign In. Try again.',
-              ),
+              content: Text('Error occurred using Google Sign In. Try again.'),
             ),
           );
         }
@@ -102,13 +97,9 @@ class Authentication {
       }
       await FirebaseAuth.instance.signOut();
     } catch (e) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Error signing out. Try again.',
-          ),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context!,
+      ).showSnackBar(SnackBar(content: Text('Error signing out. Try again.')));
     }
   }
 }

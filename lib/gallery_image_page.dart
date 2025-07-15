@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class GalleryImagePage extends StatefulWidget {
+  const GalleryImagePage({super.key});
+
   @override
   _GalleryImagePageState createState() => _GalleryImagePageState();
 }

@@ -5,7 +5,6 @@ import 'local_notification_service.dart';
 import 'sign_in.dart'; // halaman login
 import 'home_page.dart';
 
-
 // Handler ketika app dalam background/terminated
 Future<void> backgroundHandler(RemoteMessage message) async {
   print("Background Message Title: ${message.notification?.title}");
@@ -32,6 +31,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

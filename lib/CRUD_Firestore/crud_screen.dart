@@ -26,43 +26,37 @@ class _CrudScreenState extends State<CrudScreen> {
         stream: FirebaseFirestore.instance.collection("wishlist").snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Container(
-              padding: const EdgeInsets.all(16),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  DocumentSnapshot documentSnapshot =
-                      snapshot.data!.docs[index];
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                DocumentSnapshot documentSnapshot = snapshot.data!.docs[index];
 
-                  return Column(
-                    children: [
-                      InkWell(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                EditWishlistScreen(
-                                  kodeBarang: documentSnapshot['kode_barang'],
-                                  barang: documentSnapshot['barang'],
-                                  harga: documentSnapshot['harga'],
-                                  tujuan: documentSnapshot['tujuan'],
-                                ),
-                          ),
-                        ),
-                        child: Card(
-                          child: ListTile(
-                            leading: Icon(Icons.production_quantity_limits),
-                            title: Text(documentSnapshot['barang']),
-                            subtitle: Text(documentSnapshot['tujuan']),
-                            trailing: Text(documentSnapshot['harga']),
-                          ),
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => EditWishlistScreen(
+                          kodeBarang: documentSnapshot['kode_barang'],
+                          barang: documentSnapshot['barang'],
+                          harga: documentSnapshot['harga'],
+                          tujuan: documentSnapshot['tujuan'],
                         ),
                       ),
-                    ],
-                  );
-                },
-                itemCount: snapshot.data!.docs.length,
-                shrinkWrap: true,
-              ),
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.production_quantity_limits),
+                        title: Text(documentSnapshot['barang']),
+                        subtitle: Text(documentSnapshot['tujuan']),
+                        trailing: Text(documentSnapshot['harga']),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              itemCount: snapshot.data!.docs.length,
+              shrinkWrap: true,
             );
           } else {
             return Center(

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CameraImagePage extends StatefulWidget {
+  const CameraImagePage({super.key});
+
   @override
   _CameraImagePageState createState() => _CameraImagePageState();
 }

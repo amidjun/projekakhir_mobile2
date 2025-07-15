@@ -4,7 +4,7 @@ import 'sign_in.dart';
 import 'authentication.dart';
 
 class UserInfoScreen extends StatefulWidget {
-  const UserInfoScreen({Key? key, required this.user}) : super(key: key);
+  const UserInfoScreen({super.key, required this.user});
 
   final User? user;
 
@@ -23,13 +23,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         var begin = Offset(-1.0, 0.0);
         var end = Offset.zero;
         var curve = Curves.ease;
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var tween = Tween(
+          begin: begin,
+          end: end,
+        ).chain(CurveTween(curve: curve));
 
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
+        return SlideTransition(position: animation.drive(tween), child: child);
       },
     );
   }
@@ -43,19 +42,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   Widget build(BuildContext context) {
     if (_user == null) {
-      return Scaffold(
-        body: Center(
-          child: Text("User tidak ditemukan"),
-        ),
-      );
+      return Scaffold(body: Center(child: Text("User tidak ditemukan")));
     }
 
     return Scaffold(
       backgroundColor: Colors.grey[900],
-      appBar: AppBar(
-        title: Text("User Info"),
-        backgroundColor: Colors.black87,
-      ),
+      appBar: AppBar(title: Text("User Info"), backgroundColor: Colors.black87),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -75,7 +67,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     : CircleAvatar(
                         radius: 60,
                         backgroundColor: Colors.grey[700],
-                        child: Icon(Icons.person, size: 60, color: Colors.white),
+                        child: Icon(
+                          Icons.person,
+                          size: 60,
+                          color: Colors.white,
+                        ),
                       ),
                 SizedBox(height: 24),
                 Text(
@@ -89,23 +85,23 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 SizedBox(height: 8),
                 Text(
                   _user!.email ?? 'Email tidak tersedia',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white70,
-                  ),
+                  style: TextStyle(fontSize: 18, color: Colors.white70),
                 ),
                 SizedBox(height: 32),
                 _isSigningOut
                     ? CircularProgressIndicator(
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.redAccent),
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Colors.redAccent,
+                        ),
                       )
                     : ElevatedButton.icon(
                         icon: Icon(Icons.logout),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.redAccent,
                           padding: EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 20),
+                            vertical: 12,
+                            horizontal: 20,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -118,8 +114,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           setState(() {
                             _isSigningOut = false;
                           });
-                          Navigator.of(context)
-                              .pushReplacement(_routeToSignInScreen());
+                          Navigator.of(
+                            context,
+                          ).pushReplacement(_routeToSignInScreen());
                         },
                         label: Text(
                           'Sign Out',
