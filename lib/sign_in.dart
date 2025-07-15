@@ -78,7 +78,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   children: [
                                     Image(
                                       image:
-                                          AssetImage("assets/google_logo.png"),
+                                          AssetImage("google_logo.png"),
                                       height: 35.0,
                                     ),
                                     Padding(
